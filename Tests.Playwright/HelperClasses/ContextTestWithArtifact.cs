@@ -3,7 +3,7 @@ using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
-namespace PlaywrightTests
+namespace Tests.Playwright.HelperClasses
 {
     /* 
      * ContextTestWithArtifact is a base class for tests that require Playwright context and page.

@@ -7,7 +7,7 @@ using NUnit.Framework.Interfaces;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
-namespace PlaywrightTests
+namespace Tests.Playwright.HelperClasses
 {
     /* 
      * PlaywrightTestWithArtifact is a base class for tests that require Playwright context and page.
@@ -47,7 +47,7 @@ namespace PlaywrightTests
                  */
                 var playwrightService = new PlaywrightService();
                 var connectOptions = await playwrightService.GetConnectOptionsAsync<BrowserTypeConnectOptions>();
-                var launchOptionString = System.Text.Json.JsonSerializer.Serialize(PlaywrightSettingsProvider.LaunchOptions, new JsonSerializerOptions() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+                var launchOptionString = JsonSerializer.Serialize(PlaywrightSettingsProvider.LaunchOptions, new JsonSerializerOptions() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
                 if (connectOptions.Options!.Headers != null)
                 {
                     connectOptions.Options.Headers = connectOptions.Options.Headers.Concat(new Dictionary<string, string> { { "x-playwright-launch-options", launchOptionString } });
@@ -119,9 +119,9 @@ namespace PlaywrightTests
                 });
                 TestContext.AddTestAttachment(screenshotPath, description: "Screenshot");
             }
-            else 
-            { 
-                TestContext.WriteLine("Not able to take a schreenshot as Page is null"); 
+            else
+            {
+                TestContext.WriteLine("Not able to take a schreenshot as Page is null");
             }
 
 
@@ -143,7 +143,7 @@ namespace PlaywrightTests
                 TestContext.WriteLine("Not able to save video as Page or Page.Video is null");
             }
 
-            if(Browser!=null)
+            if (Browser != null)
                 await Browser.CloseAsync();
         }
     }

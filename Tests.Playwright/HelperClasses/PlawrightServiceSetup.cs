@@ -2,7 +2,7 @@
 using Azure.Developer.MicrosoftPlaywrightTesting.NUnit;
 
 
-namespace Tests.Playwright
+namespace Tests.Playwright.HelperClasses
 {
 
     [SetUpFixture]
