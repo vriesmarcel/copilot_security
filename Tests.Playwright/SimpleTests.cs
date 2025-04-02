@@ -17,7 +17,7 @@ namespace Tests.Playwright
         {
             bool istrue = new HomePage(Page)
                 .NavigateToHomePage(StartPage)
-                .SelectProduct("Artist pic 09/25/2025 John")
+                .SelectProduct("John Egbert Live")
                 .GotoCheckout()
                 .Checkout()
                 .IsOrderConfirmed();
@@ -33,9 +33,9 @@ namespace Tests.Playwright
 
             bool istrue = new HomePage(Page)
               .NavigateToHomePage(StartPage)
-              .SelectProduct("Artist pic 09/25/2025 John")
+              .SelectProduct("John Egbert Live")
               .BacktoCatalog()
-              .SelectProduct("Artist pic 09/25/2025 John")
+              .SelectProduct("The State of Affairs")
               .GotoCheckout()
               .Checkout()
               .IsOrderConfirmed();
@@ -50,9 +50,9 @@ namespace Tests.Playwright
             //insert Generated code here
             bool istrue = new HomePage(Page)
                 .NavigateToHomePage(StartPage)
-                .SelectProduct("Artist pic 09/25/2025 John")
+                .SelectProduct("John Egbert Live")
                 .BacktoCatalog()
-                .SelectProduct("Artist pic 09/25/2025 John", 3)
+                .SelectProduct("The State of Affairs", 3)
                 .GotoCheckout()
                 .Checkout()
                 .IsOrderConfirmed();
