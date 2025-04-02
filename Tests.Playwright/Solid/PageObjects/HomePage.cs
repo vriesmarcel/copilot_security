@@ -1,4 +1,5 @@
 ﻿using Azure;
+using DotLiquid.Util;
 using Microsoft.Playwright;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,19 @@ namespace Tests.Playwright.Solid.PageObjects
     internal class HomePage (IPage page)
     {
         IPage Page = page;
-        public async Task GotoHomepage(string startPage)
+        public HomePage NavigateToHomePage(string startPage)
         {
-            await Page.GotoAsync(startPage);
+            var page = Page.GotoAsync(startPage).Result;
+            return new HomePage(Page);
         }
 
-        public async Task SelectProduct(string productName, int numberOfTickets =1)
+        public ProductPage SelectProduct(string productName, int numberOfTickets=1)
         {
-            await Page.GetByRole(AriaRole.Row, new() { Name = productName }).GetByRole(AriaRole.Link).ClickAsync();
-            await Page.GetByRole(AriaRole.Combobox).SelectOptionAsync(new[] { $"{numberOfTickets}" });
-            await Page.GetByRole(AriaRole.Button, new() { Name = "PLACE ORDER" }).ClickAsync();
-
+            Page.GetByRole(AriaRole.Row, new() { Name = productName }).
+                GetByRole(AriaRole.Link).ClickAsync().Wait();
+            Page.GetByRole(AriaRole.Combobox).SelectOptionAsync(new[] { $"{numberOfTickets}" }).Wait();
+            Page.GetByRole(AriaRole.Button, new() { Name = "PLACE ORDER" }).ClickAsync().Wait();
+            return new ProductPage(Page);
         }
     }
 }

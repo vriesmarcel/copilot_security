@@ -1,3 +1,4 @@
+using Azure;
 using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
@@ -11,66 +12,50 @@ namespace Tests.Playwright.Solid.PageObjects
 
 
         [Test]
-        public async Task BuyOneProduct()
+        public void BuyOneProduct()
         {
-            var homePage = new HomePage(Page);
-            var productPage = new ProductPage(Page);
-
-            await homePage.GotoHomepage(StartPage);
-            await homePage.SelectProduct("Artist pic 09/25/2025 John");
-
-            await productPage.GotoCheckout();
-
-            var checkoutPage = new CheckoutPage(Page);
-            await checkoutPage.Checkout();
+            bool istrue = new HomePage(Page)
+                .NavigateToHomePage(StartPage)
+                .SelectProduct("Artist pic 09/25/2025 John")
+                .GotoCheckout()
+                .Checkout()
+                .IsOrderConfirmed();
+                
+            Assert.That(istrue);
         }
 
         [Test]
-        public async Task BuyTwoProducts()
+        public void BuyTwoProducts()
         {
             //insert Generated code here
-            var homePage = new HomePage(Page);
-            var productPage = new ProductPage(Page);
-            await homePage.GotoHomepage(StartPage);
 
-            await homePage.SelectProduct("Artist pic 12/25/2025 The");
-            await productPage.BacktoCatalog();
 
-            await homePage.SelectProduct("Artist pic 09/25/2025 John");
-            await productPage.GotoCheckout();
+            bool istrue = new HomePage(Page)
+              .NavigateToHomePage(StartPage)
+              .SelectProduct("Artist pic 09/25/2025 John")
+              .BacktoCatalog()
+              .SelectProduct("Artist pic 09/25/2025 John")
+              .GotoCheckout()
+              .Checkout()
+              .IsOrderConfirmed();
 
-            var checkoutPage = new CheckoutPage(Page);
-            await checkoutPage.Checkout();
-
+            Assert.That(istrue);
         }
+
 
         [Test]
-        public async Task SelectTreeTicketsAndRemoveOne()
+        public void SelectTreeTicketsAndRemoveOne()
         {
             //insert Generated code here
-            var homePage = new HomePage(Page);
-            var productPage = new ProductPage(Page);
-
-            await homePage.GotoHomepage(StartPage);
-            await homePage.SelectProduct("Artist pic 09/25/2025 John");
-
-            await productPage.BacktoCatalog();
-
-            await homePage.SelectProduct("Artist pic 12/25/2025 The", 3);
-            await productPage.BacktoCatalog();
-            var checkoutPage = new CheckoutPage(Page);
-            await checkoutPage.Checkout();
+            bool istrue = new HomePage(Page)
+                .NavigateToHomePage(StartPage)
+                .SelectProduct("Artist pic 09/25/2025 John")
+                .BacktoCatalog()
+                .SelectProduct("Artist pic 09/25/2025 John",3)
+                .GotoCheckout()
+                .Checkout()
+                .IsOrderConfirmed();
         }
-
-        /* here you find the methods extracted from the recordings, to make the test so called DRY */
-        #region DRY Methods 
-
-
-
-
-
-
-
-        #endregion
     }
+
 }

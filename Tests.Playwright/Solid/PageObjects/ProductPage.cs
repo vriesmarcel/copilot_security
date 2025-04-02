@@ -8,14 +8,16 @@ namespace Tests.Playwright.Solid.PageObjects
         private IPage Page = page;
 
 
-        public async Task GotoCheckout()
+        public CheckoutPage GotoCheckout()
         {
-            await Page.GetByRole(AriaRole.Link, new() { Name = "CHECKOUT" }).ClickAsync();
+            Page.GetByRole(AriaRole.Link, new() { Name = "CHECKOUT" }).ClickAsync().Wait();
+            return new CheckoutPage(Page);
         }
 
-        public async Task BacktoCatalog()
+        public HomePage BacktoCatalog()
         {
-            await Page.GetByRole(AriaRole.Link, new() { Name = "Back to event catalog" }).ClickAsync();
+            Page.GetByRole(AriaRole.Link, new() { Name = "Back to event catalog" }).ClickAsync().Wait();
+            return new HomePage(Page);
         }
     }
 }
