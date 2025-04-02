@@ -3,7 +3,8 @@ using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 using Tests.Playwright.HelperClasses;
-namespace Tests.Playwright.Solid.PageObjects
+using Tests.Playwright.Solid.PageObjects;
+namespace Tests.Playwright
 {
     [TestFixture]
     public class SimpleTests : PageTest
@@ -20,7 +21,7 @@ namespace Tests.Playwright.Solid.PageObjects
                 .GotoCheckout()
                 .Checkout()
                 .IsOrderConfirmed();
-                
+
             Assert.That(istrue);
         }
 
@@ -51,7 +52,7 @@ namespace Tests.Playwright.Solid.PageObjects
                 .NavigateToHomePage(StartPage)
                 .SelectProduct("Artist pic 09/25/2025 John")
                 .BacktoCatalog()
-                .SelectProduct("Artist pic 09/25/2025 John",3)
+                .SelectProduct("Artist pic 09/25/2025 John", 3)
                 .GotoCheckout()
                 .Checkout()
                 .IsOrderConfirmed();
