@@ -11,10 +11,11 @@ namespace GloboTicket.Frontend.Controllers
         {
 
         string query = 
-        $"SELECT * FROM Users WHERE Username = '{username}' AND Password = '{password}'";
+        "SELECT * FROM Users WHERE Username = @username AND Password = @password";
 
-        using var command = 
-                new SqlCommand(query, _connection);
+        using var command = new SqlCommand(query, _connection);
+        command.Parameters.Add(new SqlParameter("@username", username));
+        command.Parameters.Add(new SqlParameter("@password", password));
 
         using var reader = command.ExecuteReader();
 
