@@ -21,15 +21,7 @@ public class EventController : ControllerBase
     [HttpGet(Name = "GetEvents")]
     public async Task<IActionResult> GetAll()
     {
-        // let 1 out of 4 requests fail
-        //if (callcounter++ % 4 == 0)
-        //{
-        //    Thread.Sleep(2000);
-        //    HttpContext.Abort();
-        //    return Ok();
-        //}
-        //else
-            return  Ok(await _eventRepository.GetEvents());
+        return  Ok(await _eventRepository.GetEvents());
     }
 
     [HttpGet("{id}", Name = "GetById")]
@@ -37,4 +29,6 @@ public class EventController : ControllerBase
     {
         return await _eventRepository.GetEventById(id);
     }
+
+
 }
