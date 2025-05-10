@@ -76,7 +76,6 @@ new HealthCheckOptions()
 app.UseHttpMetrics();
 app.UseMetricServer();
 
-app.UseEndpoints(endpoints =>
-endpoints.MapMetrics());
+app.MapMetrics();
 
 app.Run();

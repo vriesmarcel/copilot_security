@@ -9,7 +9,7 @@ public class EventController : ControllerBase
 {
     private readonly IEventRepository _eventRepository;
 
-    private static int callcounter = 0;
+
     private readonly ILogger<EventController> _logger;
 
     public EventController(IEventRepository eventRepository, ILogger<EventController> logger)

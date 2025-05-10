@@ -13,7 +13,7 @@ namespace GloboTicket.Catalog.Migrations
 {
     [DbContext(typeof(EventCatalogDbContext))]
     [Migration("20220915044858_initial")]
-    partial class initial
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

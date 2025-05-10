@@ -19,7 +19,7 @@ namespace GloboTicket.Frontend.Services
                 var response = await client.GetAsync("event");
                 return await response.ReadContentAs<List<Event>>();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return await Task.FromResult(new List<Event>());
             }
