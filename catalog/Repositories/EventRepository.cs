@@ -69,6 +69,23 @@ public class EventRepository : IEventRepository
         return Task.FromResult(@event);
     }
 
+    public Task AddEvent(Event newEvent)
+    {
+        if (newEvent == null)
+        {
+            throw new ArgumentNullException(nameof(newEvent));
+        }
+
+        // Assign a new GUID if not provided
+        if (newEvent.EventId == Guid.Empty)
+        {
+            newEvent.EventId = Guid.NewGuid();
+        }
+
+        events.Add(newEvent);
+        return Task.CompletedTask;
+    }
+
     // scheduled task calls this periodically to put one item on special offer
     public void UpdateSpecialOffer()
     {
