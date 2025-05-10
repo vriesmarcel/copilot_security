@@ -8,7 +8,8 @@ namespace frontend.Profiles
     {
         public UserProfile()
         {
-            CreateMap<User, UserUpdateViewModel>().ReverseMap();
+            CreateMap<User, UserUpdateViewModel>().ReverseMap()
+                .ForMember(dest => dest.IsAdmin, opt => opt.Ignore()); // Exclude IsAdmin from mapping
         }
     }
 }
