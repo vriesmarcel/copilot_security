@@ -1,0 +1,18 @@
+﻿@model frontend.Models.User
+
+<h2>User Details</h2>
+
+<form asp-action="UpdateUser" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" />
+    </div>
+    <div>
+        <label asp-for="IsAdmin"></label>
+        <input asp-for="IsAdmin" />
+    </div>
+</form>
